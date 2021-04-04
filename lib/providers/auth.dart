@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:async';
 
+import 'package:ShopAppMe/helpers/secret.dart';
+import 'package:ShopAppMe/helpers/secret_loader.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
@@ -34,8 +36,12 @@ class Auth with ChangeNotifier {
 
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
+    var key;
+    Future<Secret> secret = SecretLoader(secretPath: "secrets.json").load();
+    await secret.then((value) => key = value.apiKey);
+
     final url =
-        'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=AIzaSyBGcqngsHFGHLQA1Q5fw1xR-BCdA-FsWII';
+        'https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=$key';
     try {
       final response = await http.post(
         url,
