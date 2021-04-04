@@ -29,7 +29,7 @@ dependencies:
   shared_preferences: ^0.5.12+4
   flutter_launcher_icons: ^0.8.1
   introduction_screen: ^2.1.0
-
+    
 flutter_icons:
   android: true
   ios: true
@@ -60,6 +60,7 @@ flutter:
     - assets/images/product-placeholder.png
     - assets/images/back.png
     - assets/images/load.gif
+    - secrets.json
 
   #   - images/a_dot_ham.jpeg
 
